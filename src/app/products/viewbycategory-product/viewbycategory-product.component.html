@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of productList">
+        <div class="card h-100">
+            <a><img class="card-img-top" src={{product.image}} alt="..." /></a>
+            <div class="card-body">
+                <h4 class="card-title"><a href="#!">{{product.productName}}</a></h4>
+                <h5>Rs. {{product.price | currency:"&#8377;"}}</h5>
+                <p class="card-text">{{product.descriptionP}}</p>
+            </div>
+            <div class="card-footer">
+                <button *ngIf="product.sku==0 ; else updateQuantity" (click)="addToCart(product.productId)" class="btn btn-secondary btn-block">Add to Cart</button>
+                <ng-template #updateQuantity>
+                    <div class="row no-gutters">
+                        <div class="col-2">
+                            <button class="btn btn-secondary btn-block" (click)="removeFromCart(product.productId)">-</button>
+                        </div>
+                        <div class="col text-center">
+                            {{product.sku}}
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-secondary btn-block" (click)="addToCart(product.productId)">+</button>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+            <div class="card-footer"><small class="text-warning">★ ★ ★ ★ ☆</small></div>
+        </div>
+    </div>

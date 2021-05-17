@@ -1,0 +1,6 @@
+<div class="item-list">
+    <a class="list-group-item" href="products">All Products</a>
+    <div class="list-group" *ngFor="let cat of categoryList">
+        <a class="list-group-item" href="products/category/{{cat.catergoryId}}">{{cat.categoryName}}</a>
+    </div>
+</div>

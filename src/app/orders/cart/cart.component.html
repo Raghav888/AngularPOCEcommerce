@@ -1,0 +1,50 @@
+<br>
+<h1>Shopping Cart</h1>
+
+<p>
+    Items in your shopping cart.
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <ng-container *ngFor="let item of orderList">
+            <tr *ngIf="item.sku>0">
+                <td>
+                    <div class="thumbnail"><img src={{item.image}} alt="Avatar"></div>
+                </td>
+                <td>{{item.productName}}</td>
+                <td class="row">
+                    <div class="col-2">
+                        <button class="btn btn-secondary btn-block" (click)="removeFromCart(item.productId)">-</button>
+                    </div>
+                    <div class="col-4 text-center">
+                        {{item.sku}}
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-secondary btn-block" (click)="addToCart(item.productId)">+</button>
+                    </div>
+                </td>
+
+                <td>{{item['price']*item['sku'] | currency:"&#8377;"}}</td>
+            </tr>
+        </ng-container>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Total Amount</th>
+            <th></th>
+            <th></th>
+            {{total | currency:"&#8377;"}}
+        </tr>
+    </tfoot>
+</table>
+<a routerLink="/order/checkout" class="btn btn-primary">Check Out</a>
+<br><br>
